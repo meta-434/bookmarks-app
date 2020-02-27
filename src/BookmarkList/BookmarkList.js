@@ -25,6 +25,7 @@ class BookmarkList extends Component {
       <section className='BookmarkList'>
         <h2>Your bookmarks</h2>
         <ul className='BookmarkList__list' aria-live='polite'>
+            {console.log(bookmarks)}
           {bookmarks.map(bookmark =>
             <BookmarkItem
               key={bookmark.id}
