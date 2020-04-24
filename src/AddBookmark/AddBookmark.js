@@ -6,7 +6,7 @@ import './AddBookmark.css';
 
 const Required = () => (
   <span className='AddBookmark__required'>*</span>
-)
+);
 
 class AddBookmark extends Component {
   static propTypes = {
@@ -22,16 +22,16 @@ class AddBookmark extends Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     // get the form fields from the event
-    const { title, url, description, rating } = e.target
+    const { title, url, description, rating } = e.target;
     const bookmark = {
       title: title.value,
       url: url.value,
       description: description.value,
       rating: rating.value,
-    }
-    this.setState({ error: null })
+    };
+    this.setState({ error: null });
     fetch(config.API_ENDPOINT, {
       method: 'POST',
       body: JSON.stringify(bookmark),
@@ -47,25 +47,25 @@ class AddBookmark extends Component {
         return res.json()
       })
       .then(data => {
-        title.value = ''
-        url.value = ''
-        description.value = ''
-        rating.value = ''
-        this.context.addBookmark(data)
+        title.value = '';
+        url.value = '';
+        description.value = '';
+        rating.value = '';
+        this.context.addBookmark(data);
         this.props.history.push('/')
       })
       .catch(error => {
-        console.error(error)
-        this.setState({ error })
+        console.error(error);
+        this.setState({ error });
       })
-  }
+  };
 
   handleClickCancel = () => {
     this.props.history.push('/')
   };
 
   render() {
-    const { error } = this.state
+    const { error } = this.state;
     return (
       <section className='AddBookmark'>
         <h2>Create a bookmark</h2>
