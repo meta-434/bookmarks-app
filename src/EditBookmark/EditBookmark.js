@@ -81,9 +81,14 @@ class EditBookmark extends Component {
                         .json()
                         .then(error => Promise.reject(error))
             })
+            .then(
+                this.context.editBookmark(bookmark)
+            )
             .then(() => {
-                this.context.updateBookmark(bookmark);
-                this.props.history.push('/')
+                this.props.history.push('/');
+                //incredibly hack-y but updated values don't show unless refreshed.
+                //TODO: make values show without using location.reload();
+                this.props.history.push('/');
             })
             .catch(error => {
                 console.error(error);
