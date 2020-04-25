@@ -82,12 +82,9 @@ class EditBookmark extends Component {
                         .then(error => Promise.reject(error))
             })
             .then(
-                this.context.editBookmark(bookmark)
+                this.context.editBookmark(bookmark, bookmarkId)
             )
             .then(() => {
-                this.props.history.push('/');
-                //incredibly hack-y but updated values don't show unless refreshed.
-                //TODO: make values show without using location.reload();
                 this.props.history.push('/');
             })
             .catch(error => {
@@ -101,8 +98,7 @@ class EditBookmark extends Component {
     };
 
     render() {
-        const { error, id, title, url, description, rating } = this.state;
-        const bookmark = { id, title, url, description, rating };
+        const { error, title, url, description, rating } = this.state;
         return (
             <section className='AddBookmark'>
                 <h2>Create a bookmark</h2>
@@ -124,7 +120,7 @@ class EditBookmark extends Component {
                             name='title'
                             id='title'
                             placeholder='Great website!'
-                            defaultValue={this.state.title}
+                            defaultValue={title}
                             required
                         />
                     </div>
@@ -139,7 +135,7 @@ class EditBookmark extends Component {
                             name='url'
                             id='url'
                             placeholder='https://www.great-website.com/'
-                            defaultValue={this.state.url}
+                            defaultValue={url}
                             required
                         />
                     </div>
@@ -150,7 +146,7 @@ class EditBookmark extends Component {
                         <textarea
                             name='description'
                             id='description'
-                            defaultValue={this.state.description}
+                            defaultValue={description}
                         />
                     </div>
                     <div>
@@ -163,13 +159,13 @@ class EditBookmark extends Component {
                             type='number'
                             name='rating'
                             id='rating'
-                            defaultValue={this.state.rating}
+                            defaultValue={rating}
                             min='1'
                             max='5'
                             required
                         />
                     </div>
-                    <div className='EditBookmark__buttons'>
+                    <div className='AddBookmark__buttons'>
                         <button type='button' onClick={this.handleClickCancel}>
                             Cancel
                         </button>

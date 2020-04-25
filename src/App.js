@@ -36,9 +36,14 @@ class App extends Component {
     })
   };
 
-  editBookmark = (bookmarkId, newFields) => {
-    const tgtBookmark = this.state.bookmarks.filter(bm => bm.id === bookmarkId);
-    console.log('targetBookmark:', bookmarkId);
+  editBookmark = (bookmark, bookmarkId) => {
+    console.log('EEEE', bookmark);
+    const newBookmarks = this.state.bookmarks.filter(bm => bm.id !== bookmarkId);
+    newBookmarks.push(bookmark);
+    this.setState({
+      bookmarks: newBookmarks
+    });
+
   };
 
   componentDidMount() {
@@ -57,8 +62,8 @@ class App extends Component {
       })
       .then(this.setBookmarks)
       .catch(error => {
-        console.error(error)
-        this.setState({ error })
+        console.error(error);
+        this.setState({ error });
       })
   }
 

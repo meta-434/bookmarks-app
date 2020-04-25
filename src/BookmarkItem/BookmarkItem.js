@@ -55,6 +55,7 @@ export default function BookmarkItem(props) {
                 Edit
               </button>
             </Link>
+            {' '}
             <button
               className='BookmarkItem__description'
               onClick={() => {
@@ -75,7 +76,7 @@ export default function BookmarkItem(props) {
 
 BookmarkItem.defaultProps = {
   onClickDelete: () => {},
-}
+};
 
 BookmarkItem.propTypes = {
   id: PropTypes.oneOfType([
@@ -84,7 +85,7 @@ BookmarkItem.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  desciption: PropTypes.string,
+  description: PropTypes.string,
   rating: PropTypes.number.isRequired,
   onClickDelete: PropTypes.func,
-}
+};
